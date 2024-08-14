@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using xBlog.API.Data;
 
@@ -11,9 +12,11 @@ using xBlog.API.Data;
 namespace xBlog.API.Migrations
 {
     [DbContext(typeof(xBlogDbContext))]
-    partial class xBlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240814131401_added_relations")]
+    partial class added_relations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

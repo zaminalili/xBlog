@@ -8,5 +8,8 @@
         public string Email { get; set; }
         public DateTime RegistrationDate { get; set; } = DateTime.Now;
 
+        // Navigation properties
+        public ICollection<Blog> Blogs { get; set; }
+
     }
 }
