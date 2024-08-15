@@ -20,7 +20,7 @@ namespace xBlog.API.Controller
             this.mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("visible")]
         public async Task<IActionResult> GetAll()
         {
 
@@ -33,7 +33,7 @@ namespace xBlog.API.Controller
         }
 
 
-        [HttpGet]
+        [HttpGet("invisible")]
         public async Task<IActionResult> GetAllInvisible()
         {
 
