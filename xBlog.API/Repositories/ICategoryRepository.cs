@@ -9,5 +9,6 @@ namespace xBlog.API.Repositories
         Task<Category> CreateAsync(Category category);
         Task<Category?> UpdateAsync(Guid id, Category category);
         Task<Category?> ChangeVisibleAsync(Guid id);
+        Task<List<Category>> GetAllInvisibleAsync();
     }
 }
