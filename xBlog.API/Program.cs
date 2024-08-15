@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using xBlog.API.Data;
+using xBlog.API.Mapping;
 using xBlog.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,9 @@ builder.Services.AddDbContext<xBlogDbContext>(options => options.UseSqlServer(bu
 
 // config repositories
 builder.Services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
+
+// automapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 //
 // ****
