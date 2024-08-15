@@ -32,7 +32,19 @@ namespace xBlog.API.Controller
             return Ok(categoriesDto);
         }
 
-        
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllInvisible()
+        {
+
+            var categoriesDomainModel = await categoryRepository.GetAllInvisibleAsync();
+
+            // mapping
+            var categoriesDto = mapper.Map<List<CategoryDto>>(categoriesDomainModel);
+
+            return Ok(categoriesDto);
+        }
+
 
         [HttpGet]
         [Route("{id:Guid}")]
