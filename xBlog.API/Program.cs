@@ -19,6 +19,7 @@ builder.Services.AddDbContext<xBlogDbContext>(options => options.UseSqlServer(bu
 
 // config repositories
 builder.Services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
+builder.Services.AddScoped<IUserRepository, SqlUserRepository>();
 
 // automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
