@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using xBlog.API.Data;
+using xBlog.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,8 @@ builder.Services.AddSwaggerGen();
 // database connection
 builder.Services.AddDbContext<xBlogDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("xBlogConnectionString")));
 
-
+// config repositories
+builder.Services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
 
 //
 // ****
