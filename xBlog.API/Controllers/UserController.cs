@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using xBlog.API.CustomActionFilters;
 using xBlog.API.Models.Domains;
 using xBlog.API.Models.DTO.Category;
 using xBlog.API.Models.DTO.User;
@@ -36,9 +37,10 @@ namespace xBlog.API.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddUserRequestDto addUserRequestDto)
         {
-
+           
             var userDomainModel = mapper.Map<User>(addUserRequestDto);
 
             await userRepository.CreateAsync(userDomainModel);
@@ -50,6 +52,7 @@ namespace xBlog.API.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateUserRequestDto updateUserRequestDto)
         {
             // mapping

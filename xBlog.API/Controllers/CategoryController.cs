@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using xBlog.API.CustomActionFilters;
 using xBlog.API.Models.Domains;
 using xBlog.API.Models.DTO.Category;
 using xBlog.API.Repositories;
@@ -61,6 +62,7 @@ namespace xBlog.API.Controller
         }
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddCategoryRequestDto addCategoryRequestDto)
         {
 
@@ -75,6 +77,7 @@ namespace xBlog.API.Controller
 
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCategoryRequestDto updateCategoryRequestDto)
         {
             // mapping
