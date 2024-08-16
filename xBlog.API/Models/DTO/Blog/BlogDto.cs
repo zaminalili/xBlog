@@ -13,7 +13,6 @@
         public Guid CategoryId { get; set; }
         public Guid UserId { get; set; }
 
-        public Category Category { get; set; }
-        public User User { get; set; }
+
     }
 }
