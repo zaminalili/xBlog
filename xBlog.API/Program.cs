@@ -1,5 +1,8 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using xBlog.API.Data;
 using xBlog.API.Mapping;
 using xBlog.API.Repositories;
@@ -29,6 +32,18 @@ builder.Services.AddScoped<IBlogRepository, SqlBlogRepository>();
 
 // automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+ 
+// authentication and authorization
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+{
+    ValidateIssuer = true, 
+    ValidateAudience = true, 
+    ValidateLifetime = true,
+    ValidateIssuerSigningKey = true,
+    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+    ValidAudience = builder.Configuration["Jwt:Issuer"],
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+});
 
 //
 // ****
@@ -45,6 +60,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
