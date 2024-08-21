@@ -25,6 +25,8 @@ builder.Services.AddSwaggerGen();
 // database connection
 builder.Services.AddDbContext<xBlogDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("xBlogConnectionString")));
 
+builder.Services.AddDbContext<xBlogAuthDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("xBlogAuthConnectionString")));
+
 // config repositories
 builder.Services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
 builder.Services.AddScoped<IUserRepository, SqlUserRepository>();
