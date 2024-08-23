@@ -32,6 +32,7 @@ builder.Services.AddDbContext<xBlogAuthDbContext>(options => options.UseSqlServe
 builder.Services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
 builder.Services.AddScoped<IUserRepository, SqlUserRepository>();
 builder.Services.AddScoped<IBlogRepository, SqlBlogRepository>();
+builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 
 // automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
